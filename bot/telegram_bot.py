@@ -26,9 +26,20 @@ from usage_tracker import UsageTracker
 from googleapiclient.discovery import build
 from google.oauth2.service_account import Credentials
 
-# --- ДОДАТИ ЦЕ ТУТ ---
-from googleapiclient.discovery import build
-from google.oauth2.service_account import Credentials
+def load_prompt_from_github_raw(url: str) -> str:
+    import requests
+    logging.info(f'[DEBUG] 📥 Завантажуємо system_prompt з GitHub RAW: {url}')
+    try:
+        response = requests.get(url, timeout=10)
+        response.raise_for_status()
+        text = response.text.strip()
+        if not text:
+            logging.warning('[WARNING] system_prompt порожній')
+        logging.info(f'[DEBUG] ✅ Завантажено system_prompt (довжина = {len(text)}): {text[:80]}...')
+        return text
+    except Exception as e:
+        logging.error(f'[ERROR] Не вдалося завантажити system_prompt з GitHub RAW: {str(e)}')
+        return "You are a helpful assistant."  # fallback
 
 def load_prompt_from_google_docs(doc_id):
     logging.info(f'[DEBUG] 🟡 Entering load_prompt_from_google_docs with doc_id: {doc_id}')
