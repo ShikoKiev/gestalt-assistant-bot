@@ -1133,5 +1133,13 @@ class ChatGPTTelegramBot:
         application.add_handler(CallbackQueryHandler(self.handle_callback_inline_query))
 
         application.add_error_handler(error_handler)
+    if __name__ == '__main__':
+        # 👇 Тестовий URL — можна лишити той, що зараз у тебе
+        test_url = "https://raw.githubusercontent.com/ShikoKiev/gestalt-assistant-bot/refs/heads/main/bot/system_prompt.txt"
+    
+        from telegram_bot import load_prompt_from_github_raw  # або імпортуй звідти, де вона є
+    
+        test_prompt = load_prompt_from_github_raw(test_url)
+        logging.info(f"[DEBUG] 🧪 Результат тестового завантаження prompt:\n{test_prompt[:200]}")
 
         application.run_polling()
