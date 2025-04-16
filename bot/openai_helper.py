@@ -220,9 +220,9 @@ class OpenAIHelper:
         """
         bot_language = self.config['bot_language']
         try:
-            if chat_id not in self.conversations or self.__max_age_reached(chat_id):
-    content = system_prompt if system_prompt is not None else ''
-    self.reset_chat_history(chat_id, content=content)
+        if chat_id not in self.conversations or self.__max_age_reached(chat_id):
+            content = system_prompt if system_prompt is not None else ''
+            self.reset_chat_history(chat_id, content=content)
 
             self.last_updated[chat_id] = datetime.datetime.now()
 
