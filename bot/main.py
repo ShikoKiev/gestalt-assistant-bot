@@ -72,4 +72,4 @@ def main():
     telegram_config = {
         'token': os.environ['TELEGRAM_BOT_TOKEN'],
         'admin_user_ids': os.environ.get('ADMIN_USER_IDS', '-'),
-        'allowed
+        'allowed'
