@@ -222,6 +222,8 @@ class OpenAIHelper:
         try:
             exceeded_max_tokens = False
             exceeded_max_history_size = False
+
+            logging.debug(f"[DEBUG] system_prompt: {repr(system_prompt)}")
             
             if chat_id not in self.conversations or self.__max_age_reached(chat_id):
                 content = system_prompt if system_prompt is not None else ''
