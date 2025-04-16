@@ -41,6 +41,7 @@ def load_prompt_from_google_docs(doc_id):
         logging.info(f'[DEBUG] Loaded Google Doc title: {document.get("title")}')
     except Exception as e:
         logging.error(f'[ERROR] Failed to load Google Doc: {str(e)}')
+        logging.error('[DEBUG] Returning fallback system prompt.')
         return "Unable to load system prompt."
     
         content = document.get('body').get('content')
@@ -52,6 +53,8 @@ def load_prompt_from_google_docs(doc_id):
                     text += elem.get('textRun', {}).get('content', '')
 
         logging.info(f'[DEBUG] extracted system prompt: {text}')
+        if not text.strip():
+        logging.warning('[WARNING] Google Doc loaded, but empty!')
         return text.strip()
 # --- ДО СЮДИ ---
 
