@@ -1010,18 +1010,8 @@ class ChatGPTTelegramBot:
                 else:
                     async def _send_inline_query_response():
                         nonlocal total_tokens
-                        url = "https://raw.githubusercontent.com/ShikoKiev/gestalt-assistant-bot/refs/heads/main/bot/system_prompt.txt"
-                        
-                        # Edit the current message to indicate that the answer is being processed
-                        await context.bot.edit_message_text(inline_message_id=inline_message_id,
-                                                            text=f'{query}\n\n_{answer_tr}:_\n{loading_tr}',
-                                                            parse_mode=constants.ParseMode.MARKDOWN)
-
-                        
-                        logging.info(f"[DEBUG] 🔁 INLINE: system_prompt = {repr(system_prompt[:80])}")
-                        response, total_tokens = await self.openai.get_chat_response(chat_id=user_id, query=query, system_prompt=system_prompt)
-
-                        if is_direct_result(response):
+                                            
+                                                    if is_direct_result(response):
                             cleanup_intermediate_files(response)
                             await edit_message_with_retry(context, chat_id=None,
                                                           message_id=inline_message_id,
