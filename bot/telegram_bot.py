@@ -5,6 +5,7 @@ import logging
 import os
 import io
 
+
 from uuid import uuid4
 from telegram import BotCommandScopeAllGroupChats, Update, constants
 from telegram import InlineKeyboardMarkup, InlineKeyboardButton, InlineQueryResultArticle
