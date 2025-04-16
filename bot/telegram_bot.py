@@ -1000,7 +1000,8 @@ class ChatGPTTelegramBot:
                                                             text=f'{query}\n\n_{answer_tr}:_\n{loading_tr}',
                                                             parse_mode=constants.ParseMode.MARKDOWN)
 
-                        logging.info(f'Generating response for inline query by {name}')
+                        system_prompt = load_prompt_from_github_raw(url)  # це треба замінити
+                        logging.info(f"[DEBUG] 🔁 INLINE: system_prompt = {repr(system_prompt[:80])}")
                         response, total_tokens = await self.openai.get_chat_response(chat_id=user_id, query=query)
 
                         if is_direct_result(response):
