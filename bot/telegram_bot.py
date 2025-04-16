@@ -37,7 +37,12 @@ def load_prompt_from_google_docs(doc_id):
     creds = Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
     service = build('docs', 'v1', credentials=creds)
 
-    document = service.documents().get(documentId='1J49gsNrqoGLX18oTppSzbqbIuQccczAlGQFAcvB0MlU').execute()
+    document = service.documents().get(documentId=doc_id).execute()  # 🟡 Ми замінили цей рядок
+    logging.info(f'[DEBUG] Loaded Google Doc title: {document.get("title")}')
+except Exception as e:
+    logging.error(f'[ERROR] Failed to load Google Doc: {str(e)}')
+    return "Unable to load system prompt."
+
     content = document.get('body').get('content')
 
     text = ''
