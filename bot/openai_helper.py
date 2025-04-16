@@ -223,16 +223,19 @@ class OpenAIHelper:
             if chat_id not in self.conversations or self.__max_age_reached(chat_id):
                 content = system_prompt if system_prompt is not None else ''
                 self.reset_chat_history(chat_id, content=content)
-    
-                self.last_updated[chat_id] = datetime.datetime.now()
-    
-                self.__add_to_history(chat_id, role="user", content=query)
-    
-                # Summarize the chat history if it's too long to avoid excessive token usage
-                token_count = self.__count_tokens(self.conversations[chat_id])
-                exceeded_max_tokens = token_count + self.config['max_tokens'] > self.__max_model_tokens()
-                exceeded_max_history_size = len(self.conversations[chat_id]) > self.config['max_history_size']
-
+        
+            self.last_updated[chat_id] = datetime.datetime.now()
+            self.__add_to_history(chat_id, role="user", content=query)
+        
+            # 🔧 Уникаємо помилок при першому використанні змінних
+            exceeded_max_tokens = False
+            exceeded_max_history_size = False
+        
+            # Розрахунок
+            token_count = self.__count_tokens(self.conversations[chat_id])
+            exceeded_max_tokens = token_count + self.config['max_tokens'] > self.__max_model_tokens()
+            exceeded_max_history_size = len(self.conversations[chat_id]) > self.config['max_history_size']
+        
             if exceeded_max_tokens or exceeded_max_history_size:
                 logging.info(f'Chat history for chat ID {chat_id} is too long. Summarising...')
                 try:
@@ -244,6 +247,7 @@ class OpenAIHelper:
                 except Exception as e:
                     logging.warning(f'Error while summarising chat history: {str(e)}. Popping elements instead...')
                     self.conversations[chat_id] = self.conversations[chat_id][-self.config['max_history_size']:]
+
 
             max_tokens_str = 'max_completion_tokens' if self.config['model'] in O_MODELS else 'max_tokens'
             common_args = {
