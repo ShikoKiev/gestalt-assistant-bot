@@ -7,6 +7,7 @@ logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
 import traceback
+import requests
 import os
 import io
 
@@ -33,7 +34,6 @@ from usage_tracker import UsageTracker
 
 def load_prompt_from_github_raw(url: str) -> str:
     logging.info('[DEBUG] 🚀 ВХІД у функцію load_prompt_from_github_raw')
-    import requests
     logging.info('[DEBUG] ✅ Імпортовано requests')
     logging.info(f'[DEBUG] 📥 Завантажуємо system_prompt з GitHub RAW: {url}')
     try:
