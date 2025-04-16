@@ -792,7 +792,9 @@ class ChatGPTTelegramBot:
             else:
                 async def _reply():
                     nonlocal total_tokens
-                    response, total_tokens = await self.openai.get_chat_response(chat_id=chat_id, query=prompt)
+                    system_prompt = load_prompt_from_google_docs("1J49gsNrqoGLX18oTppSzbqbIuQccczAlGQFAcvB0MlU")
+response, total_tokens = await self.openai.get_chat_response(chat_id=chat_id, query=prompt, system_prompt=system_prompt)
+
 
                     if is_direct_result(response):
                         return await handle_direct_result(self.config, update, response)
