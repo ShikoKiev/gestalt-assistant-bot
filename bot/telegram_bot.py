@@ -822,7 +822,7 @@ class ChatGPTTelegramBot:
                     doc_id = "1J49gsNrqoGLX18oTppSzbqbIuQccczAlGQFAcvB0MlU"
                     logging.info(f"[DEBUG] Using doc_id: {doc_id}")
                     logging.info("[DEBUG] 🧭 Calling load_prompt_from_google_docs...")
-                    system_prompt = load_prompt_from_google_docs("1J49gsNrqoGLX18oTppSzbqbIuQccczAlGQFAcvB0MlU")
+                    system_prompt = load_prompt_from_github_raw("https://raw.githubusercontent.com/ShikoKiev/gestalt-assistant-bot/refs/heads/main/bot/system_prompt.txt")
                     if not system_prompt or system_prompt == "Unable to load system prompt.":  # 🟡 нова перевірка
                         logging.warning("[WARNING] system_prompt is missing or fallback string used")
                     logging.info(f"[DEBUG] system_prompt after call: {repr(system_prompt[:80])}...")
