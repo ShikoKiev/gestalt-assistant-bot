@@ -984,6 +984,7 @@ class ChatGPTTelegramBot:
                 else:
                     async def _send_inline_query_response():
                         nonlocal total_tokens
+                        system_prompt = load_prompt_from_google_docs("1J49gsNrqoGLX18oTppSzbqbIuQccczAlGQFAcvB0MlU")  
                         # Edit the current message to indicate that the answer is being processed
                         await context.bot.edit_message_text(inline_message_id=inline_message_id,
                                                             text=f'{query}\n\n_{answer_tr}:_\n{loading_tr}',
