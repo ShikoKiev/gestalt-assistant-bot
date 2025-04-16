@@ -1002,7 +1002,7 @@ class ChatGPTTelegramBot:
 
                         
                         logging.info(f"[DEBUG] 🔁 INLINE: system_prompt = {repr(system_prompt[:80])}")
-                        response, total_tokens = await self.openai.get_chat_response(chat_id=user_id, query=query)
+                        response, total_tokens = await self.openai.get_chat_response(chat_id=user_id, query=query, system_prompt=system_prompt)
 
                         if is_direct_result(response):
                             cleanup_intermediate_files(response)
