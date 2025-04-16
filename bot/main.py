@@ -1,8 +1,8 @@
-from dotenv import load_dotenv
-load_dotenv()
-
 import logging
 import os
+
+from dotenv import load_dotenv
+load_dotenv()
 
 from plugin_manager import PluginManager
 from openai_helper import OpenAIHelper, default_max_tokens, are_functions_available
