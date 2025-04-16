@@ -59,7 +59,9 @@ def load_prompt_from_google_docs(doc_id):
             logging.warning('[WARNING] Google Doc loaded, but empty!')
             logging.info('[DEBUG] system_prompt fallback')
         logging.info(f'[DEBUG] Final extracted prompt before return:\n{text.strip()}')    
-        return text.strip()
+        system_prompt = text.strip()  # ← ми додали цю змінну
+        logging.info(f'[DEBUG] system_prompt loaded: {system_prompt}')  # ← додали цей лог
+        return system_prompt
 # --- ДО СЮДИ ---
 
 class ChatGPTTelegramBot:
@@ -807,13 +809,24 @@ class ChatGPTTelegramBot:
                     nonlocal total_tokens
                     logging.info('[DEBUG] trying to load system_prompt')
                     doc_id = "1J49gsNrqoGLX18oTppSzbqbIuQccczAlGQFAcvB0MlU"
+                    logging.info(f"[DEBUG] Using doc_id: {doc_id}")
                     logging.info("[DEBUG] 🧭 Calling load_prompt_from_google_docs...")
                     system_prompt = load_prompt_from_google_docs("1J49gsNrqoGLX18oTppSzbqbIuQccczAlGQFAcvB0MlU")
+                    if not system_prompt or system_prompt == "Unable to load system prompt.":
+                    logging.info(f"[DEBUG] system_prompt after call: {repr(system_prompt[:80])}...")
                     logging.info(f"[DEBUG] ✅ Loaded system_prompt: {repr(system_prompt[:80])}...")
+                    logging.info(f"[DEBUG] system_prompt loaded (len={len(system_prompt)}):\n{system_prompt}")
+                    if not system_prompt or system_prompt == "Unable to load system prompt.":  # 🟡 нова перевірка
+                        logging.warning("[WARNING] system_prompt is missing or fallback string used")
                     logging.info(f'[DEBUG] system_prompt loaded: {system_prompt}')
                     logging.info(f"[DEBUG] system_prompt loaded (len={len(system_prompt)}):\n{system_prompt}")
                     logging.info(f'[DEBUG] loaded system_prompt: {system_prompt}')
-                    
+                    if system_prompt and system_prompt != "Unable to load system prompt.":
+                    response, total_tokens = await self.openai.get_chat_response(
+                    chat_id=chat_id, query=prompt, system_prompt=system_prompt)
+                    logging.warning(f"[WARNING] system_prompt returned fallback string: {system_prompt}")
+                    else:
+                    logging.warning(f"[WARNING] Using fallback prompt: {system_prompt}")
                     response, total_tokens = await self.openai.get_chat_response(
                         chat_id=chat_id, query=prompt, system_prompt=system_prompt)
 
