@@ -28,9 +28,10 @@ from utils import is_group_chat, get_thread_id, message_text, wrap_with_indicato
 from openai_helper import OpenAIHelper, localized_text
 from usage_tracker import UsageTracker
 
-logging.info('[DEBUG] 🚀 ВХІД у функцію load_prompt_from_github_raw')
+
 
 def load_prompt_from_github_raw(url: str) -> str:
+    logging.info('[DEBUG] 🚀 ВХІД у функцію load_prompt_from_github_raw')
     import requests
     logging.info(f'[DEBUG] 📥 Завантажуємо system_prompt з GitHub RAW: {url}')
     try:
