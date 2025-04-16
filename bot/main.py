@@ -12,7 +12,6 @@ from telegram_bot import ChatGPTTelegramBot
 def main():
     # Read .env file
   
-
     # Setup logging
     logging.basicConfig(
         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
