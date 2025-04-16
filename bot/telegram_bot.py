@@ -1011,12 +1011,13 @@ class ChatGPTTelegramBot:
                     async def _send_inline_query_response():
                         nonlocal total_tokens
                                             
-                                                    if is_direct_result(response):
+                        if is_direct_result(response):
                             cleanup_intermediate_files(response)
                             await edit_message_with_retry(context, chat_id=None,
-                                                          message_id=inline_message_id,
-                                                          text=f'{query}\n\n_{answer_tr}:_\n{unavailable_message}',
-                                                          is_inline=True)
+                                message_id=inline_message_id,
+                                text=f'{query}\n\n_{answer_tr}:_\n{unavailable_message}',
+                                is_inline=True
+                            )
                             return
 
                         text_content = f'{query}\n\n_{answer_tr}:_\n{response}'
