@@ -121,7 +121,8 @@ class OpenAIHelper:
             self.reset_chat_history(chat_id)
         return len(self.conversations[chat_id]), self.__count_tokens(self.conversations[chat_id])
 
-    async def get_chat_response(self, chat_id: int, query: str) -> tuple[str, str]:
+    async def get_chat_response(self, chat_id: int, query: str, system_prompt: str | None = None) -> tuple[str, str]:
+        
         """
         Gets a full response from the GPT model.
         :param chat_id: The chat ID
@@ -129,7 +130,8 @@ class OpenAIHelper:
         :return: The answer from the model and the number of tokens used
         """
         plugins_used = ()
-        response = await self.__common_get_chat_response(chat_id, query)
+        response = await self.__common_get_chat_response(chat_id, query, system_prompt=system_prompt)
+
         if self.config['enable_functions'] and not self.conversations_vision[chat_id]:
             response, plugins_used = await self.__handle_function_call(chat_id, response)
             if is_direct_result(response):
@@ -208,7 +210,8 @@ class OpenAIHelper:
         wait=wait_fixed(20),
         stop=stop_after_attempt(3)
     )
-    async def __common_get_chat_response(self, chat_id: int, query: str, stream=False):
+    async def __common_get_chat_response(self, chat_id: int, query: str, stream=False, system_prompt=None):
+
         """
         Request a response from the GPT model.
         :param chat_id: The chat ID
@@ -218,7 +221,8 @@ class OpenAIHelper:
         bot_language = self.config['bot_language']
         try:
             if chat_id not in self.conversations or self.__max_age_reached(chat_id):
-                self.reset_chat_history(chat_id)
+    content = system_prompt if system_prompt is not None else ''
+    self.reset_chat_history(chat_id, content=content)
 
             self.last_updated[chat_id] = datetime.datetime.now()
 
