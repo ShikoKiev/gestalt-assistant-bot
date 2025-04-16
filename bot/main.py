@@ -10,7 +10,7 @@ from telegram_bot import ChatGPTTelegramBot
 
 def main():
     # Read .env file
-    load_dotenv()
+  
 
     # Setup logging
     logging.basicConfig(
