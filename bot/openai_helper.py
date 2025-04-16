@@ -220,18 +220,18 @@ class OpenAIHelper:
         """
         bot_language = self.config['bot_language']
         try:
-        if chat_id not in self.conversations or self.__max_age_reached(chat_id):
-            content = system_prompt if system_prompt is not None else ''
-            self.reset_chat_history(chat_id, content=content)
-
-            self.last_updated[chat_id] = datetime.datetime.now()
-
-            self.__add_to_history(chat_id, role="user", content=query)
-
-            # Summarize the chat history if it's too long to avoid excessive token usage
-            token_count = self.__count_tokens(self.conversations[chat_id])
-            exceeded_max_tokens = token_count + self.config['max_tokens'] > self.__max_model_tokens()
-            exceeded_max_history_size = len(self.conversations[chat_id]) > self.config['max_history_size']
+            if chat_id not in self.conversations or self.__max_age_reached(chat_id):
+                content = system_prompt if system_prompt is not None else ''
+                self.reset_chat_history(chat_id, content=content)
+    
+                self.last_updated[chat_id] = datetime.datetime.now()
+    
+                self.__add_to_history(chat_id, role="user", content=query)
+    
+                # Summarize the chat history if it's too long to avoid excessive token usage
+                token_count = self.__count_tokens(self.conversations[chat_id])
+                exceeded_max_tokens = token_count + self.config['max_tokens'] > self.__max_model_tokens()
+                exceeded_max_history_size = len(self.conversations[chat_id]) > self.config['max_history_size']
 
             if exceeded_max_tokens or exceeded_max_history_size:
                 logging.info(f'Chat history for chat ID {chat_id} is too long. Summarising...')
