@@ -443,8 +443,8 @@ class ChatGPTTelegramBot:
                         )
                 else:
                     # Get the response of the transcript
-                    response, total_tokens = await self.openai.get_chat_response(chat_id=chat_id, query=transcript)
-
+                    response, total_tokens = await self.openai.get_chat_response(chat_id=chat_id, query=transcript, system_prompt=system_prompt)
+                
                     self.usage[user_id].add_chat_tokens(total_tokens, self.config['token_price'])
                     if str(user_id) not in allowed_user_ids and 'guests' in self.usage:
                         self.usage["guests"].add_chat_tokens(total_tokens, self.config['token_price'])
