@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "gestalt-assistant-bot",
+  "private_key_id": "8340eafa769e19975fd263e3907485efcb6f91f3",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDxes/cn9FHVRoS\nTGI/QYS94ThM+QQH0mzedwPGXkVjlwqSYoc7o5Yo5qszAmz1FijM1TAKYtdDibLi\nyvv3+CKXex+xk7Y+ZngwT2HkFoB3DVME87NwAdoWkCme61x7R8HBTl9364xJ2DE7\nbytn0N7uy8At8OXtlxuYi/LbYMMg6MeIp7JbK6b7IPjoeBs46uPX/sv5BjL//e8c\n9kLE1PYREvHFOW2DEYQEzKybkP4fbUkjerirIAEO0/A4brYR4WlhsHJcxCuP/Kkl\nLNapAMjfpx7Rh5xXK3Br7iw+lyqkbAnuSPDeIQV5VeLpdQ26lamvZYFbjnP/Imw3\nR+NkHOnrAgMBAAECggEALzldyh8lDcaqTRbMBePZwkp3uLHgJGl16gGrZtFLz6Cb\nrCoBmVuyA3is1VJtnXaCbyBn/zf6MhaNOcYJhaJsnWQyPAePld9zNLtpgPIXmHCu\nIiNInah3Dn+N7CrKEL/lN9kMWYbijhRt+FoSyoAyANAu2q0oQhERkAEacuWW82nB\nTnjgJhR/8jYEP+W8BTUGiTdx/HXc2T9fuwSE0zDBWhNLnsmwFX7ldUEbxepQTWx3\ngZN9279T/aN9KCqWIZiWOxzLF0BwZRtZHmDcRkt25YB8nIftfP+JJPbU7AubzkyG\na0JmhYRZBeZxt8q2R7KJFdMNVXKfmcdS2fl58tU1NQKBgQD7tjL8dveAYfzEazF+\nCzYnBgvUOxPQG9R2JvT7deuzn3waY0ZBTOwqF8XIYiAoBFRn1pA7LYB+oojDxFLb\nRBAwLZ2EFmadCimmCYXa5ZHJNfSN97yKvtoqiyezzQ5jJPgt8UbvFkopIyQRj7JE\nmfA9zYUF5ay2ssTJP2Aq1He/xwKBgQD1l/zVJuos9K8lj3FXLhCLW+lgROVYz+I5\ni3zApcwtGsc3DsBAO2ZHTADPDRsusmghG3rQwjNxqlBpNk25dpr3g5xmRO/Ll9YQ\nTnULdcdmoX2NSPWLKOaOw5p1oSwaCxYBhjRgXEAndwNQu1EH5f7XKrXS97mrjZpq\nZ8OwXZEMvQKBgQCP2gq9egfsmRNp9ZDtZd7m4m+0NKcYEi+T7qOnajbwCr9UHVQz\nUZDOZZOk919FP2Q1i8wV5eU/eggLSZHIudc+kXMp39t4+CvhNiQHe5eblHhVAjYA\nXR41nh1shk4onyIur2tIjEaJyAl+9857ojZIO8JAIohYSUZpdQyyrYZaVQKBgFLw\nBN4myiZsa0mP64K5d7TYUTPFkH4xlgBA7txQIWeKB4S8YohOhvfE3vENSAS5Exk7\nInqlWqIkFgux3wWm3CaCN6sB1Mk4eX4AQN6h47jxCGlSHjnkkhfcTqkyyKXy4Heb\nTszL2o55TpFQ8MhuD2WycrzQE8+vflo4uIkyz+0xAoGBAI8htxIM0eiy+wMEiDqg\nIOCjE5PJpy5ypTD+1HnyNPIwNdq6uPDERD5s7Cj6/KjAMf+NWXmLIzUO5H82/hDs\n7M0K14p5RinC1AaAvgQWweB2OSWHcw5PhPjAkYwGYyq/zjxcE3PR7v6hXBhs0eGA\nDzmuDvBSZ7I5UqiK5bN5wlJL\n-----END PRIVATE KEY-----\n",
+  "client_email": "docs-access-bot@gestalt-assistant-bot.iam.gserviceaccount.com",
+  "client_id": "116361845639533765246",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/docs-access-bot%40gestalt-assistant-bot.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
