@@ -54,7 +54,7 @@ def load_prompt_from_google_docs(doc_id):
 
         logging.info(f'[DEBUG] extracted system prompt: {text}')
         if not text.strip():
-        logging.warning('[WARNING] Google Doc loaded, but empty!')
+            logging.warning('[WARNING] Google Doc loaded, but empty!')
         return text.strip()
 # --- ДО СЮДИ ---
 
