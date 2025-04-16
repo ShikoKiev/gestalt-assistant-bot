@@ -809,6 +809,7 @@ class ChatGPTTelegramBot:
                     
                     You respond in Ukrainian by default, but automatically switch to the user's language or follow a request to respond in another language (if clearly stated in the message).
                     """.strip()
+                    logging.info(f"[DEBUG] ✅ system_prompt визначено (len={len(system_prompt)}): {repr(system_prompt[:80])}")
                     # ↑↑↑ це замінює завантаження з GitHub RAW ↑↑↑
 
                     logging.info(f"[DEBUG] system_prompt after GitHub load: {repr(system_prompt[:100])}")
