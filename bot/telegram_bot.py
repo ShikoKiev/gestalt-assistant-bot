@@ -802,6 +802,7 @@ class ChatGPTTelegramBot:
                 async def _reply():
                     nonlocal total_tokens
                     logging.info('[DEBUG] trying to load system_prompt')
+                    doc_id = "1J49gsNrqoGLX18oTppSzbqbIuQccczAlGQFAcvB0MlU"
                     system_prompt = load_prompt_from_google_docs("1J49gsNrqoGLX18oTppSzbqbIuQccczAlGQFAcvB0MlU")
                     logging.info(f'[DEBUG] loaded system_prompt: {system_prompt}')
                     
