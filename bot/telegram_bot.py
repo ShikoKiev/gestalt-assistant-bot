@@ -50,7 +50,8 @@ def load_prompt_from_google_docs(doc_id):
             if 'paragraph' in element:
                 for elem in element['paragraph']['elements']:
                     text += elem.get('textRun', {}).get('content', '')
-    
+
+        logging.info(f'[DEBUG] extracted system prompt: {text}')
         return text.strip()
 # --- ДО СЮДИ ---
 
