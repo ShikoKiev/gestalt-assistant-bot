@@ -41,40 +41,6 @@ def load_prompt_from_github_raw(url: str) -> str:
         logging.error(f'[ERROR] Не вдалося завантажити system_prompt з GitHub RAW: {str(e)}')
         return "You are a helpful assistant."  # fallback
 
-def load_prompt_from_google_docs(doc_id):
-    logging.info(f'[DEBUG] 🟡 Entering load_prompt_from_google_docs with doc_id: {doc_id}')
-    logging.info(f'[DEBUG] function `load_prompt_from_google_docs` called with doc_id={doc_id}')
-    SCOPES = ['https://www.googleapis.com/auth/documents.readonly']
-    SERVICE_ACCOUNT_FILE = 'path/to/your/service-account.json'
-
-    creds = Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
-    service = build('docs', 'v1', credentials=creds)
-    try:
-        document = service.documents().get(documentId=doc_id).execute() 
-        logging.info(f'[DEBUG] Loaded Google Doc title: {document.get("title")}')
-    except Exception as e:
-        logging.error(f'[ERROR] Failed to load Google Doc: {str(e)}')
-        logging.error('[DEBUG] Returning fallback system prompt.')
-        return "Unable to load system prompt."
-    
-        content = document.get('body').get('content')
-    
-        text = ''
-        for element in content:
-            if 'paragraph' in element:
-                for elem in element['paragraph']['elements']:
-                    text += elem.get('textRun', {}).get('content', '')
-
-        logging.info(f'[DEBUG] extracted system prompt: {text}')
-        if not text.strip():
-            logging.warning('[WARNING] Google Doc loaded, but empty!')
-            logging.info('[DEBUG] system_prompt fallback')
-        logging.info(f'[DEBUG] Final extracted prompt before return:\n{text.strip()}')    
-        system_prompt = text.strip()  # ← ми додали цю змінну
-        logging.info(f'[DEBUG] system_prompt loaded: {system_prompt}')  # ← додали цей лог
-        return system_prompt
-# --- ДО СЮДИ ---
-
 class ChatGPTTelegramBot:
     """
     Class representing a ChatGPT Telegram Bot.
