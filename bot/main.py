@@ -22,10 +22,10 @@ def main():
 
     # Check if the required environment variables are set
     required_values = ['TELEGRAM_BOT_TOKEN', 'OPENAI_API_KEY']
-    missing_values = [value for value in required_values if os.environ.get(value) is None]
-    if len(missing_values) > 0:
-        logging.error(f'The following environment values are missing in your .env: {", ".join(missing_values)}')
-        exit(1)
+missing_values = [value for value in required_values if os.environ.get(value) is None]
+if len(missing_values) > 0:
+    logging.error(f'Missing required environment variables: {", ".join(missing_values)}')
+    exit(1)
 
     # Setup configurations
     model = os.environ.get('OPENAI_MODEL', 'gpt-4o')
