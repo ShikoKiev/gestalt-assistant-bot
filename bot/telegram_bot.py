@@ -812,9 +812,9 @@ class ChatGPTTelegramBot:
                     logging.info(f"[DEBUG] Using doc_id: {doc_id}")
                     logging.info("[DEBUG] 🧭 Calling load_prompt_from_google_docs...")
                     system_prompt = load_prompt_from_google_docs("1J49gsNrqoGLX18oTppSzbqbIuQccczAlGQFAcvB0MlU")
-                    if not system_prompt or system_prompt == "Unable to load system prompt.":
+                    if not system_prompt or system_prompt == "Unable to load system prompt.":  # 🟡 нова перевірка
+                        logging.warning("[WARNING] system_prompt is missing or fallback string used")
                     logging.info(f"[DEBUG] system_prompt after call: {repr(system_prompt[:80])}...")
-                    logging.info(f"[DEBUG] ✅ Loaded system_prompt: {repr(system_prompt[:80])}...")
                     logging.info(f"[DEBUG] system_prompt loaded (len={len(system_prompt)}):\n{system_prompt}")
                     if not system_prompt or system_prompt == "Unable to load system prompt.":  # 🟡 нова перевірка
                         logging.warning("[WARNING] system_prompt is missing or fallback string used")
