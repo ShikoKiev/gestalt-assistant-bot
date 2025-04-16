@@ -23,6 +23,31 @@ from utils import is_group_chat, get_thread_id, message_text, wrap_with_indicato
 from openai_helper import OpenAIHelper, localized_text
 from usage_tracker import UsageTracker
 
+from googleapiclient.discovery import build
+from google.oauth2.service_account import Credentials
+
+# --- ДОДАТИ ЦЕ ТУТ ---
+from googleapiclient.discovery import build
+from google.oauth2.service_account import Credentials
+
+def load_prompt_from_google_docs(doc_id):
+    SCOPES = ['https://www.googleapis.com/auth/documents.readonly']
+    SERVICE_ACCOUNT_FILE = 'path/to/your/service-account.json'  # 🔁 заміни це
+
+    creds = Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
+    service = build('docs', 'v1', credentials=creds)
+
+    document = service.documents().get(documentId='1J49gsNrqoGLX18oTppSzbqbIuQccczAlGQFAcvB0MlU').execute()
+    content = document.get('body').get('content')
+
+    text = ''
+    for element in content:
+        if 'paragraph' in element:
+            for elem in element['paragraph']['elements']:
+                text += elem.get('textRun', {}).get('content', '')
+
+    return text.strip()
+# --- ДО СЮДИ ---
 
 class ChatGPTTelegramBot:
     """
