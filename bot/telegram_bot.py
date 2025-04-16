@@ -822,13 +822,13 @@ class ChatGPTTelegramBot:
                     logging.info(f"[DEBUG] system_prompt loaded (len={len(system_prompt)}):\n{system_prompt}")
                     logging.info(f'[DEBUG] loaded system_prompt: {system_prompt}')
                     if system_prompt and system_prompt != "Unable to load system prompt.":
-                    response, total_tokens = await self.openai.get_chat_response(
+                        response, total_tokens = await self.openai.get_chat_response(
                     chat_id=chat_id, query=prompt, system_prompt=system_prompt)
                     logging.warning(f"[WARNING] system_prompt returned fallback string: {system_prompt}")
                     else:
-                    logging.warning(f"[WARNING] Using fallback prompt: {system_prompt}")
-                    response, total_tokens = await self.openai.get_chat_response(
-                        chat_id=chat_id, query=prompt, system_prompt=system_prompt)
+                        logging.warning(f"[WARNING] Using fallback prompt: {system_prompt}")
+                        response, total_tokens = await self.openai.get_chat_response(
+                            chat_id=chat_id, query=prompt, system_prompt=system_prompt)
 
 
                     if is_direct_result(response):
