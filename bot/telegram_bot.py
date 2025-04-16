@@ -785,6 +785,7 @@ class ChatGPTTelegramBot:
                     url = "https://raw.githubusercontent.com/ShikoKiev/gestalt-assistant-bot/refs/heads/main/bot/system_prompt.txt"
                     logging.info(f"[DEBUG] 🌐 Calling load_prompt_from_github_raw with URL: {url}")
                     system_prompt = load_prompt_from_github_raw(url)
+                    logging.info(f"[DEBUG] system_prompt after GitHub load: {repr(system_prompt[:100])}")
                     if not system_prompt or system_prompt == "Unable to load system prompt.":  # 🟡 нова перевірка
                         logging.warning("[WARNING] system_prompt is missing or fallback string used")
                     logging.info(f"[DEBUG] system_prompt after call: {repr(system_prompt[:80])}...")
