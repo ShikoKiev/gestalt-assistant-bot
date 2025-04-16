@@ -34,9 +34,12 @@ from usage_tracker import UsageTracker
 def load_prompt_from_github_raw(url: str) -> str:
     logging.info('[DEBUG] 🚀 ВХІД у функцію load_prompt_from_github_raw')
     import requests
+    logging.info('[DEBUG] ✅ Імпортовано requests')
     logging.info(f'[DEBUG] 📥 Завантажуємо system_prompt з GitHub RAW: {url}')
     try:
+        logging.info('[DEBUG] 🧪 Починаємо requests.get...')
         response = requests.get(url, timeout=10)
+        logging.info('[DEBUG] 🧪 Отримали response від requests.get')
         response.raise_for_status()
         text = response.text.strip()
         logging.info(f"[DEBUG] 🔍 Завантажений текст після обрізки:\n{text[:100]}")
