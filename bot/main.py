@@ -1,5 +1,6 @@
 import logging
 import os
+import json
 
 from plugin_manager import PluginManager
 from openai_helper import OpenAIHelper, default_max_tokens, are_functions_available
@@ -96,6 +97,7 @@ def main():
         'tts_prices': [float(i) for i in os.environ.get('TTS_PRICES', "0.015,0.030").split(",")],
         'transcription_price': float(os.environ.get('TRANSCRIPTION_PRICE', 0.006)),
         'bot_language': os.environ.get('BOT_LANGUAGE', 'en'),
+        'google_credentials_json': os.environ.get('GOOGLE_CREDENTIALS_JSON'),
     }
 
     plugin_config = {
