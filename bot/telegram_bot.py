@@ -35,6 +35,7 @@ from usage_tracker import UsageTracker
 def load_prompt_from_github_raw(url: str) -> str:
     logging.info('[DEBUG] 🚀 ВХІД у функцію load_prompt_from_github_raw')
     logging.info('[DEBUG] ✅ Імпортовано requests')
+    url = "https://httpbin.org/get"
     logging.info(f'[DEBUG] 📥 Завантажуємо system_prompt з GitHub RAW: {url}')
     try:
         logging.info('[DEBUG] 🧪 Починаємо requests.get...')
