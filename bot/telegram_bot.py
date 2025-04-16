@@ -31,14 +31,15 @@ from googleapiclient.discovery import build
 from google.oauth2.service_account import Credentials
 
 def load_prompt_from_google_docs(doc_id):
+    logging.info(f'[DEBUG] 🟡 Entering load_prompt_from_google_docs with doc_id: {doc_id}')
     logging.info(f'[DEBUG] function `load_prompt_from_google_docs` called with doc_id={doc_id}')
     SCOPES = ['https://www.googleapis.com/auth/documents.readonly']
-    SERVICE_ACCOUNT_FILE = 'path/to/your/service-account.json'  # 🔁 заміни це
+    SERVICE_ACCOUNT_FILE = 'path/to/your/service-account.json'
 
     creds = Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
     service = build('docs', 'v1', credentials=creds)
     try:
-        document = service.documents().get(documentId=doc_id).execute()  # 🟡 Ми замінили цей рядок
+        document = service.documents().get(documentId=doc_id).execute() 
         logging.info(f'[DEBUG] Loaded Google Doc title: {document.get("title")}')
     except Exception as e:
         logging.error(f'[ERROR] Failed to load Google Doc: {str(e)}')
@@ -806,7 +807,9 @@ class ChatGPTTelegramBot:
                     nonlocal total_tokens
                     logging.info('[DEBUG] trying to load system_prompt')
                     doc_id = "1J49gsNrqoGLX18oTppSzbqbIuQccczAlGQFAcvB0MlU"
+                    logging.info("[DEBUG] 🧭 Calling load_prompt_from_google_docs...")
                     system_prompt = load_prompt_from_google_docs("1J49gsNrqoGLX18oTppSzbqbIuQccczAlGQFAcvB0MlU")
+                    logging.info(f"[DEBUG] ✅ Loaded system_prompt: {repr(system_prompt[:80])}...")
                     logging.info(f'[DEBUG] system_prompt loaded: {system_prompt}')
                     logging.info(f"[DEBUG] system_prompt loaded (len={len(system_prompt)}):\n{system_prompt}")
                     logging.info(f'[DEBUG] loaded system_prompt: {system_prompt}')
