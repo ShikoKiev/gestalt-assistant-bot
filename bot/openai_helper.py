@@ -220,6 +220,9 @@ class OpenAIHelper:
         """
         bot_language = self.config['bot_language']
         try:
+            exceeded_max_tokens = False
+            exceeded_max_history_size = False
+            
             if chat_id not in self.conversations or self.__max_age_reached(chat_id):
                 content = system_prompt if system_prompt is not None else ''
                 self.reset_chat_history(chat_id, content=content)
@@ -408,6 +411,9 @@ class OpenAIHelper:
         """
         bot_language = self.config['bot_language']
         try:
+            exceeded_max_tokens = False
+            exceeded_max_history_size = False
+    
             if chat_id not in self.conversations or self.__max_age_reached(chat_id):
                 self.reset_chat_history(chat_id)
 
