@@ -30,6 +30,7 @@ def load_prompt_from_github_raw(url: str) -> str:
         response = requests.get(url, timeout=10)
         response.raise_for_status()
         text = response.text.strip()
+        logging.info(f"[DEBUG] 🔍 Завантажений текст після обрізки:\n{text[:100]}")
         if not text:
             logging.warning('[WARNING] system_prompt порожній')
         logging.info(f'[DEBUG] ✅ Завантажено system_prompt (довжина = {len(text)}): {text[:80]}...')
@@ -985,7 +986,7 @@ class ChatGPTTelegramBot:
                     async def _send_inline_query_response():
                         nonlocal total_tokens
                         url = "https://raw.githubusercontent.com/ShikoKiev/gestalt-assistant-bot/refs/heads/main/bot/system_prompt.txt"
-                        system_prompt = load_prompt_from_github_raw(url)  
+                        
                         # Edit the current message to indicate that the answer is being processed
                         await context.bot.edit_message_text(inline_message_id=inline_message_id,
                                                             text=f'{query}\n\n_{answer_tr}:_\n{loading_tr}',
