@@ -791,7 +791,7 @@ class ChatGPTTelegramBot:
                 async def _reply():
                     nonlocal total_tokens
                     logging.info('[DEBUG] trying to load system_prompt')
-                    url = "https://raw.githubusercontent.com/ShikoKiev/gestalt-assistant-bot/refs/heads/main/bot/system_prompt.txt"
+                    url = "https://raw.githubusercontent.com/openai/openai-cookbook/main/examples/data/example.txt"
                     logging.info(f"[DEBUG] 🌐 Calling load_prompt_from_github_raw with URL: {url}")
                     system_prompt = load_prompt_from_github_raw(url)
                     logging.info(f"[DEBUG] system_prompt after GitHub load: {repr(system_prompt[:100])}")
