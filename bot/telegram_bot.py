@@ -31,6 +31,7 @@ from googleapiclient.discovery import build
 from google.oauth2.service_account import Credentials
 
 def load_prompt_from_google_docs(doc_id):
+    logging.info(f'[DEBUG] function `load_prompt_from_google_docs` called with doc_id={doc_id}')
     SCOPES = ['https://www.googleapis.com/auth/documents.readonly']
     SERVICE_ACCOUNT_FILE = 'path/to/your/service-account.json'  # 🔁 заміни це
 
